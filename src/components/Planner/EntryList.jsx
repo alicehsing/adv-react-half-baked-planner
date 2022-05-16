@@ -1,16 +1,18 @@
 import Entry from './EntryItem';
 import styles from './EntryList.css';
+import { useEntries } from '../../context/PlannerContext';
 
 export default function Entries() {
   // TODO: Replace with the entries stored in PlannerContext
-  const entries = [
-    {
-      id: 0,
-      title: 'Replace me!',
-      content: '`content` should only be visible on the detail view',
-      date: new Date()
-    },
-  ];
+  const { entries } = useEntries();
+  // const entries = [
+  //   {
+  //     id: 0,
+  //     title: 'Replace me!',
+  //     content: '`content` should only be visible on the detail view',
+  //     date: new Date(),
+  //   },
+  // ];
 
   return (
     <ul className={styles.list}>
