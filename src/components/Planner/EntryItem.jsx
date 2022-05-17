@@ -9,10 +9,12 @@ export default function Entry({ id, title, date }) {
   );
 
   return (
-    <Link to={`/entries/${id}`}>
-      <li>
-        {title} <span className={styles.date}>{relativeDate}</span>
-      </li>
-    </Link>
+    <>
+      <Link to={`/entries/${id}`}>
+        <li>
+          {title} <span className={styles.date}>{relativeDate}</span>
+        </li>
+      </Link>
+    </>
   );
 }
