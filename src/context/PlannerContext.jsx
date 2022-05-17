@@ -14,6 +14,13 @@ function entriesReducer(entries, { type, payload }) {
       return entries.map((entry) =>
         entry.id === payload.id ? payload : entry
       );
+    // case 'update':
+    //   return entries.map((entry) => {
+    //     const { title, content } = payload.entry;
+    //     return entry.id === payload.entry.id
+    //       ? { ...payload.entry, title, content }
+    //       : entry;
+    //   });
     case 'delete':
       return entries.filter((entry) => entry.id !== payload.id);
     default:
@@ -55,12 +62,30 @@ const PlannerProvider = ({ children }) => {
     return entries.find((note) => note.id === Number(id));
   };
 
+  //update entry function
+  const updateEntry = (entry) => {
+    dispatch({
+      type: 'update',
+      payload: entry,
+    });
+    return entry;
+  };
+
+  //delete entry function
+  const deleteEntry = (id) => {
+    const entry = getEntry(id);
+    dispatch({ type: 'delete', payload: { id } });
+    return entry;
+  };
+
   return (
     <PlannerContext.Provider
       value={{
         entries,
         addEntry,
         getEntry,
+        updateEntry,
+        deleteEntry,
       }}
     >
       {children}
